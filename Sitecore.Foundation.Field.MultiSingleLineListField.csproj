@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="CustomField\MultiSingleLineListField.cs" />
     <Compile Include="Editor\MultiSingleLineListFieldEditor.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -73,9 +73,10 @@
                     urlString[HttpUtility.UrlEncode(resultKey)] = HttpUtility.UrlEncode(resultValue) ?? string.Empty;
                 }
             }
-
+            bool isModified = (this.Value == urlString.ToString());
             this.Value = urlString.ToString();
-            this.SetModified();
+            if (isModified)
+                this.SetModified();
         }
 
         public void BuildControl()
@@ -100,7 +101,7 @@
         {
             if (string.IsNullOrEmpty(key))
             {
-                key = System.DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                key = Helper.GetUniqueId;
             }
             else if (string.IsNullOrEmpty(value))
                 return string.Empty;
@@ -108,18 +109,16 @@
             var uniqueId = GetUniqueID(this.ID + "_Param");
             Sitecore.Context.ClientPage.ServerProperties[this.ID + "_LastParameterID"] = uniqueId;
             var clientEvent = Sitecore.Context.ClientPage.GetClientEvent(this.ID + ".ParameterChange");
-            var isVertical = this.IsVertical ? "</tr><tr>" : string.Empty;
-
             var keyHtml = string.Format(
-                        "<input type=\"hidden\" id=\"{0}\" name=\"{1}\" type=\"text\"{2}{3} style=\"{6}\" value=\"{4}\" onchange=\"{5}\"/>",
-                        uniqueId, uniqueId, IsReadOnly(), IsDisabled(), StringUtil.EscapeQuote(key), clientEvent, this.NameStyle);
+                        "<input type=\"hidden\" id=\"{0}\" name=\"{1}\" type=\"text\"{2}{3} style=\"{5}\" value=\"{4}\" />",
+                        uniqueId, uniqueId, IsReadOnly(), IsDisabled(), StringUtil.EscapeQuote(key), this.NameStyle);
             
             var valueHtml = GetValueHtmlControl(uniqueId, StringUtil.EscapeQuote(HttpUtility.UrlDecode(value)), clientEvent);
 
             return
                 string.Format(
-                    "<table width=\"100%\" class='scAdditionalParameters'><tr><td>{0}</td>{2}<td width=\"100%\">{1}</td></tr></table>",
-                    keyHtml, valueHtml, isVertical);
+                    "<table width=\"100%\" class='scAdditionalParameters'><tr><td width=\"100%\">{0}{1}</td></tr></table>",
+                    keyHtml, valueHtml);
         }
 
         protected string GetValueHtmlControl(string id, string value,string clientEvent)

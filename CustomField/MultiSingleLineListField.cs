@@ -43,7 +43,7 @@
 
                     if (pendingCounts > 0)
                     {
-                        var minValue = originalKeys.Any() ? originalKeys.Min() : long.Parse(System.DateTime.Now.ToString("yyyyMMddHHmmssfff")) - 1;
+                        var minValue = originalKeys.Any() ? originalKeys.Min() : long.Parse(Helper.GetUniqueId) - 1;
 
                         for (int i = 0; i < pendingCounts; i++)
                         {
