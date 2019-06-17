@@ -73,7 +73,7 @@
                     urlString[HttpUtility.UrlEncode(resultKey)] = HttpUtility.UrlEncode(resultValue) ?? string.Empty;
                 }
             }
-            bool isModified = (this.Value == urlString.ToString());
+            bool isModified = (this.Value != urlString.ToString());
             this.Value = urlString.ToString();
             if (isModified)
                 this.SetModified();
@@ -123,7 +123,7 @@
 
         protected string GetValueHtmlControl(string id, string value,string clientEvent)
         {
-            return string.Format("<input id=\"{0}_value\" name=\"{0}_value\" type=\"text\" style=\"width:100%\" value=\"{1}\" onfocus=\"{4}\"  onchange=\"{4}\"{2}{3}/>",
+            return string.Format("<input id=\"{0}_value\" name=\"{0}_value\" type=\"text\" style=\"width:100%\" value=\"{1}\" onfocus=\"{4}\" {2}{3}/>",
                 (object)id, (object)value, IsReadOnly(), IsDisabled(), clientEvent);
         }
 
