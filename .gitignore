@@ -4,3 +4,6 @@
 
 /.vs/Sitecore.Foundation.Field.MultiSingleLineListField/v15/Server/sqlite3
 /obj/Debug
+/CodeBase/.vs/Sitecore.Foundation.Field.MultiSingleLineListField/v15/Server/sqlite3
+/CodeBase/obj
+!/CodeBase/Libraries
