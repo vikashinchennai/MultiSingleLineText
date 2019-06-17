@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Sitecore.Foundation.Field.MultiSingleLineListField/v15/Server/sqlite3
+/obj/Debug
